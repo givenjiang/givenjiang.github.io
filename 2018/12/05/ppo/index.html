@@ -242,7 +242,7 @@
 
     
         <meta property="article:published_time" content="Wed Dec 05 2018 17:31:12 GMT+0900">
-        <meta property="article:modified_time" content="Thu Dec 06 2018 15:39:47 GMT+0900">
+        <meta property="article:modified_time" content="Thu Dec 06 2018 16:27:54 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -265,7 +265,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2018/12/05/ppo/index.html",
     "headline": "Proximal Policy Optimization (PPO) 论文阅读",
     "datePublished": "Wed Dec 05 2018 17:31:12 GMT+0900",
-    "dateModified": "Thu Dec 06 2018 15:39:47 GMT+0900",
+    "dateModified": "Thu Dec 06 2018 16:27:54 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -348,7 +348,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Introduction</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Introduction</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-PPO类-class"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">2. PPO类 (class)</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -483,10 +483,14 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>论文地址：<a href="https://arxiv.org/abs/1707.06347" target="_blank" rel="noopener">PPO</a></p>
+        <p>论文地址：<a href="https://arxiv.org/abs/1707.06347" target="_blank" rel="noopener">PPO (OpenAI)</a>, <a href="https://arxiv.org/abs/1707.02286" target="_blank" rel="noopener">DPPO (DeepMind)</a></p>
 <p>本文参考了莫凡的<a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/6-4-DPPO/" target="_blank" rel="noopener">Blog</a>以及<a href="https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow/blob/master/contents/12_Proximal_Policy_Optimization/simply_PPO.py" target="_blank" rel="noopener">代码</a>。</p>
 <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>PPO的整体架构如下图所示： </p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fxwz47cmcij30jg06faau.jpg" alt="overview"></p>
+<p>PPO基于Actor-Critic架构，pi和old_pi均为actor. 每当需要更新Actor和crictor的时候，通过update_oldpi这个operation进行。</p>
+<p>算法伪代码流程如下：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fxx22iyeb3j30el0ccgnd.jpg" alt="6-4-2"></p>
+<h2 id="2-PPO类-class"><a href="#2-PPO类-class" class="headerlink" title="2. PPO类 (class)"></a>2. PPO类 (class)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PPO</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># 搭建 Actor Critic 网络</span></span><br><span class="line">        <span class="comment"># 搭建计算图纸 graph</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, s, a, r)</span>:</span></span><br><span class="line">        <span class="comment"># 更新 PPO</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">choose_action</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="comment"># 选动作</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_v</span><span class="params">(self, s)</span>:</span></span><br><span class="line">        <span class="comment"># 计算 state value</span></span><br></pre></td></tr></table></figure>
 
         
     
