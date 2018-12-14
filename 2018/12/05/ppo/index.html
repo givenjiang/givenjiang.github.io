@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Wed Dec 05 2018 17:31:12 GMT+0900">
-        <meta property="article:modified_time" content="Wed Dec 12 2018 14:42:02 GMT+0900">
+        <meta property="article:modified_time" content="Fri Dec 14 2018 15:33:17 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2018/12/05/ppo/index.html",
     "headline": "Proximal Policy Optimization (PPO) 论文阅读",
     "datePublished": "Wed Dec 05 2018 17:31:12 GMT+0900",
-    "dateModified": "Wed Dec 12 2018 14:42:02 GMT+0900",
+    "dateModified": "Fri Dec 14 2018 15:33:17 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -353,7 +353,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-PPO类-class"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. PPO类 (class)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-PPO-与环境的互动"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 PPO 与环境的互动</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-PPO类-class"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. PPO类 (class)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-PPO-与环境的互动"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 PPO 与环境的互动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-使用PPO预测动作"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 使用PPO预测动作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-更新PPO"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.3 更新PPO</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-1-更新Critic"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">2.3.1 更新Critic</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-2-更新Actor"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">2.3.2 更新Actor</span></a></li></ol></li></ol></li></ol>
     </ul>
     
 
@@ -492,7 +492,7 @@
 <p>本文参考了莫凡的<a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/6-4-DPPO/" target="_blank" rel="noopener">Blog</a>以及<a href="https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow/blob/master/contents/12_Proximal_Policy_Optimization/simply_PPO.py" target="_blank" rel="noopener">代码</a>。</p>
 <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>PPO的整体架构如下图所示： </p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fxwz47cmcij30jg06faau.jpg" alt="overview"></p>
-<p>PPO基于Actor-Critic架构，pi和old_pi均为actor. 每当需要更新Actor和crictor的时候，通过update_oldpi这个operation进行。</p>
+<p>PPO基于Actor-Critic架构，pi和old_pi均为actor. 每当需要更新Actor和Critic的时候，通过update_oldpi这个operation进行。</p>
 <p>算法伪代码流程如下：</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fy1oa5f07ej30q60m6grc.jpg" alt="image-20181210161730954"></p>
 <p>从伪代码流程图中可以看出，</p>
@@ -502,14 +502,14 @@
 <p>在损失函数中加入KL惩罚项限制了policy的更新步长。如果new policy 与 old policy 差距过大 (即更新步长过大)，KL项也会相应地增大，从而限制了步长不要过大。</p>
 <h1 id="2-PPO类-class"><a href="#2-PPO类-class" class="headerlink" title="2. PPO类 (class)"></a>2. PPO类 (class)</h1><pre><code class="python">class PPO(object):
     def __init__(self):
-        # 搭建 Actor Critic 网络
-        # 搭建计算图纸 graph
+        # init Actor-Critic model
+        # build graph
     def update(self, s, a, r):
-        # 更新 PPO
+        # update PPO model
     def choose_action(self, s):
-        # 选动作
+        # choose action
     def get_v(self, s):
-        # 计算 state value
+        # compute state value
 </code></pre>
 <h2 id="2-1-PPO-与环境的互动"><a href="#2-1-PPO-与环境的互动" class="headerlink" title="2.1 PPO 与环境的互动"></a>2.1 PPO 与环境的互动</h2><pre><code class="python">ppo = PPO()
 for ep in range(EP_MAX):
@@ -521,12 +521,12 @@ for ep in range(EP_MAX):
         s_, r, done, _ = env.step(a)
         buffer_s.append(s)
         buffer_a.append(a)
-        buffer_r.append((r+8)/8)    # normalize reward, 发现有帮助
+        buffer_r.append((r+8)/8)    # normalize reward
         s = s_
 
-        # 如果 buffer 收集一个 batch 了或者 episode 完了
+        # After collecting a whole batch or finishing one episode
         if (t+1) % BATCH == 0 or t == EP_LEN-1:
-            # 计算 discounted reward
+            # calculate discounted reward
             v_s_ = ppo.get_v(s_)
             discounted_r = []
             for r in buffer_r[::-1]:
@@ -535,9 +535,89 @@ for ep in range(EP_MAX):
             discounted_r.reverse()
 
             bs, ba, br = batch(buffer_s, buffer_a, discounted_r)
-            # 清空 buffer
+            # clean buffer
             buffer_s, buffer_a, buffer_r = [], [], []
-            ppo.update(bs, ba, br)  # 更新 PPO
+            ppo.update(bs, ba, br)  # update PPO
+</code></pre>
+<p>PPO模型只有在采集够一个batch数据或者一个episode结束的时候才进行更新，非更新时机的时候仅仅通过选择动作进行状态和奖励的采样。值得一提的是，对于PPO的更新并没有experience replay的形式。</p>
+<h2 id="2-2-使用PPO预测动作"><a href="#2-2-使用PPO预测动作" class="headerlink" title="2.2 使用PPO预测动作"></a>2.2 使用PPO预测动作</h2><p>PPO对动作的预测通过Actor完成，actor是一个由神经网络模拟的正态分布，定义如下：</p>
+<pre><code class="python">def _build_anet(self, name, trainable):
+    with tf.variable_scope(name):
+        l1 = tf.layers.dense(self.tfs, 100, tf.nn.relu, trainable=trainable)  # initiate 1st dense layer
+        mu = 2 * tf.layers.dense(l1, A_DIM, tf.nn.tanh, trainable=trainable)  # initiate 2nd dense layer
+        sigma = tf.layers.dense(l1, A_DIM, tf.nn.softplus, trainable=trainable)  # initiate 3rd dense layer
+        norm_dist = tf.distributions.Normal(loc=mu, scale=sigma)  # init a normal dist with mu and sigma
+    params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)  # get paras from namescope name
+    return norm_dist, params
+</code></pre>
+<p>预测动作的operation由对这个正态分布进行采样实现，</p>
+<pre><code class="python">def choose_action(self, s):
+    s = s[np.newaxis, :]  # add one axis for s
+    a = self.sess.run(self.sample_op, {self.tfs: s})[0]
+    return np.clip(a, -2, 2)  # limited a ranged from -2 to 2
+
+with tf.variable_scope(&#39;sample_action&#39;):
+    self.sample_op = tf.squeeze(pi.sample(1), axis=0)  # choosing action operation
+</code></pre>
+<h2 id="2-3-更新PPO"><a href="#2-3-更新PPO" class="headerlink" title="2.3 更新PPO"></a>2.3 更新PPO</h2><p>更新PPO也就是更新Actor和Critic的过程（在代码中分别表示为atrain_op和ctrain_op）.</p>
+<h3 id="2-3-1-更新Critic"><a href="#2-3-1-更新Critic" class="headerlink" title="2.3.1 更新Critic"></a>2.3.1 更新Critic</h3><p>从第一节的伪代码流程图中可以找到更新Critic的部分：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fy66a5bfvcj30jk03kwfd.jpg" alt="image-20181214134222433"></p>
+<p>体现在代码中Critic的部分：</p>
+<pre><code class="python">with tf.variable_scope(&#39;critic&#39;):  # under variable scope of critic
+    l1 = tf.layers.dense(self.tfs, 100, tf.nn.relu)  # init a FC layer with 100 units and relu
+    self.v = tf.layers.dense(l1, 1)  # baseline
+    self.tfdc_r = tf.placeholder(tf.float32, [None, 1], &#39;discounted_r&#39;)  # init rt
+    self.advantage = self.tfdc_r - self.v  # advantage
+    self.closs = tf.reduce_mean(tf.square(self.advantage))  # L_BL
+    self.ctrain_op = tf.train.AdamOptimizer(C_LR).minimize(self.closs)  # minimize TD error
+</code></pre>
+<p>具体来说就是通过计算出的discounted_r减去state value v得到advantage，然后最小化advantage构成的closs.</p>
+<h3 id="2-3-2-更新Actor"><a href="#2-3-2-更新Actor" class="headerlink" title="2.3.2 更新Actor"></a>2.3.2 更新Actor</h3><p>回到伪代码流程图更新Actor的部分：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fy6711xr4rj30k804mjsl.jpg" alt="image-20181214140824472"></p>
+<p>在定义$J_{PPO}$的时候使用了<strong>KL惩罚项</strong></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fy68kmt25hj30ug03swf0.jpg" alt="image-20181214150150229"></p>
+<p>而实际上在代码中还采用了另外一种定义方式<strong>clipped surrogate objective</strong>.</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fy68l40x0ij30qw03gglz.jpg" alt="image-20181214150219822"></p>
+<pre><code class="python">with tf.variable_scope(&#39;loss&#39;):
+    with tf.variable_scope(&#39;surrogate&#39;):
+        # ratio = tf.exp(pi.log_prob(self.tfa) - oldpi.log_prob(self.tfa))
+        ratio = pi.prob(self.tfa) / oldpi.prob(self.tfa)  # pi_theta / pi_old
+        surr = ratio * self.tfadv  # first term of Jppo
+    if METHOD[&#39;name&#39;] == &#39;kl_pen&#39;:
+        self.tflam = tf.placeholder(tf.float32, None, &#39;lambda&#39;)
+        kl = tf.distributions.kl_divergence(oldpi, pi)
+        self.kl_mean = tf.reduce_mean(kl)
+        self.aloss = -(tf.reduce_mean(surr - self.tflam * kl))  # Jppo
+    else:  # clipping method, find this is better
+        self.aloss = -tf.reduce_mean(tf.minimum(
+            surr,
+            tf.clip_by_value(ratio, 1. - METHOD[&#39;epsilon&#39;], 1. +     METHOD[&#39;epsilon&#39;]) * self.tfadv))
+</code></pre>
+<p>clipped surrogate objective实际上就是限制了surrogate $\frac{\pi_{\theta}(a_t|s_t)}{\pi_{old}(a_t|s_t)}\hat{A}_t$的变化幅度，与KL惩罚项的效果相似。在下面update代码中，update之前的pi和old_pi拥有一样的参数，然后多次更新pi，保持old_pi不变，这样surrogate的限制功能就体现出来了。</p>
+<pre><code class="python"># updating PPO
+def update(self, s, a, r):
+    self.sess.run(self.update_oldpi_op)  #  updating pi to old_pi
+    adv = self.sess.run(self.advantage, {self.tfs: s, self.tfdc_r: r})  # computing advantage
+    # adv = (adv - adv.mean())/(adv.std()+1e-6)     # sometimes helpful
+
+    # update actor
+    if METHOD[&#39;name&#39;] == &#39;kl_pen&#39;:
+        for _ in range(A_UPDATE_STEPS):
+            _, kl = self.sess.run(
+                [self.atrain_op, self.kl_mean],
+                {self.tfs: s, self.tfa: a, self.tfadv: adv, self.tflam: METHOD[&#39;lam&#39;]})
+            if kl &gt; 4 * METHOD[&#39;kl_target&#39;]:  # this in in google&#39;s paper
+                break
+        if kl &lt; METHOD[&#39;kl_target&#39;] / 1.5:  # adaptive lambda, this is in OpenAI&#39;s paper
+            METHOD[&#39;lam&#39;] /= 2
+        elif kl &gt; METHOD[&#39;kl_target&#39;] * 1.5:
+            METHOD[&#39;lam&#39;] *= 2
+        METHOD[&#39;lam&#39;] = np.clip(METHOD[&#39;lam&#39;], 1e-4, 10)  # sometimes explode, this clipping is my solution
+    else:  # clipping method, find this is better (OpenAI&#39;s paper)
+        [self.sess.run(self.atrain_op, {self.tfs: s, self.tfa: a, self.tfadv: adv}) for _ in range(A_UPDATE_STEPS)]
+
+    # update critic
+    [self.sess.run(self.ctrain_op, {self.tfs: s, self.tfdc_r: r}) for _ in range(C_UPDATE_STEPS)]
 </code></pre>
 
         
@@ -675,7 +755,7 @@ for ep in range(EP_MAX):
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Frontier/">Frontier<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Frontier/Reinforcement-Learning/">Reinforcement Learning<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Life/">Life<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Life/Song/">Song<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Life/면허시험/">면허시험<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tools/">Tools<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tools/Blog/">Blog<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/Frontier/">Frontier<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Life/">Life<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tools/">Tools<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tools/Blog/">Blog<span class="sidebar_archives-count">1</span></a>
             </li></ul>
         </li>
         
