@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Mon Dec 17 2018 11:51:49 GMT+0900">
-        <meta property="article:modified_time" content="Wed Dec 19 2018 18:39:37 GMT+0900">
+        <meta property="article:modified_time" content="Wed Dec 19 2018 20:34:45 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2018/12/17/meta-learnig-review/index.html",
     "headline": "Meta Learning: A Review (DL)",
     "datePublished": "Mon Dec 17 2018 11:51:49 GMT+0900",
-    "dateModified": "Wed Dec 19 2018 18:39:37 GMT+0900",
+    "dateModified": "Wed Dec 19 2018 20:34:45 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -523,6 +523,7 @@
 <p>对比第一节的流程图，task信息的提供者变为$D_{train}$, 测试数据$D_{test}$输入之后输出预测的结果$y_{test}$.接下来会简述几种$D_{train}$(task信息)影响模型的方式：</p>
 <h2 id="2-1-使用HyperNetwork生成参数"><a href="#2-1-使用HyperNetwork生成参数" class="headerlink" title="2.1 使用HyperNetwork生成参数"></a>2.1 使用HyperNetwork生成参数</h2><p><a href="https://arxiv.org/abs/1609.09106" target="_blank" rel="noopener">HyperNetwork</a>的主要思路就是使用一个参数网络来生成目标网络的参数供目标网络使用。用流程图表示如下：</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fyc6ya742ij30is0d8t98.jpg" alt="image-20181219183913854"></p>
+<p>在这里，HyperNetwork作为一个meta network发挥作用，与传统DL方法不同的是，不直接学习参数$\theta$ ，而是通过meta network来学习生成参数$\theta​$, 这也是ML又被称为Learning to learn的原因。</p>
 
         
     
