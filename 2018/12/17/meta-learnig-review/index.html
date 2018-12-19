@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Mon Dec 17 2018 11:51:49 GMT+0900">
-        <meta property="article:modified_time" content="Wed Dec 19 2018 17:47:58 GMT+0900">
+        <meta property="article:modified_time" content="Wed Dec 19 2018 18:21:18 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2018/12/17/meta-learnig-review/index.html",
     "headline": "Meta Learning: A Review (DL)",
     "datePublished": "Mon Dec 17 2018 11:51:49 GMT+0900",
-    "dateModified": "Wed Dec 19 2018 17:47:58 GMT+0900",
+    "dateModified": "Wed Dec 19 2018 18:21:18 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -353,7 +353,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Motivation"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Motivation</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-Deep-Learning现状"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 Deep Learning现状</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-Meta-Learning-概述"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 Meta Learning 概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-从Few-shot-Learning说起"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 从Few-shot Learning说起</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Meta-Learning-详解"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Meta Learning 详解</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Motivation"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Motivation</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-Deep-Learning现状"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 Deep Learning现状</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-Meta-Learning-概述"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 Meta Learning 概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-从Few-shot-Learning说起"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 从Few-shot Learning说起</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Meta-Learning-详解"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Meta Learning 详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-使用HyperNetwork生成参数"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 使用HyperNetwork生成参数</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -490,7 +490,7 @@
     
         <h1 id="1-Motivation"><a href="#1-Motivation" class="headerlink" title="1. Motivation"></a>1. Motivation</h1><h2 id="1-1-Deep-Learning现状"><a href="#1-1-Deep-Learning现状" class="headerlink" title="1.1 Deep Learning现状"></a>1.1 Deep Learning现状</h2><ul>
 <li><strong>Deep Learning 定义</strong><ul>
-<li>Deep Learning研究的是一个从输入$x$到输出$y$的映射$y=f(x)$，只是这个映射函数$f$是用一个端到端的深度神经网络来表示：</li>
+<li>Deep Learning (DL) 研究的是一个从输入$x$到输出$y$的映射$y=f(x)$，只是这个映射函数$f$是用一个端到端的深度神经网络来表示：</li>
 </ul>
 </li>
 </ul>
@@ -511,7 +511,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="1-2-Meta-Learning-概述"><a href="#1-2-Meta-Learning-概述" class="headerlink" title="1.2 Meta Learning 概述"></a>1.2 Meta Learning 概述</h2><p>Meta Learning的思路与Deep Learning不同，ML学习的是task之间的关系，而DL是在task中学习task的规律与分布。所以ML能够运用学习到的tasks之间的不同，在面对新的task之时可以只通过少量的的样本就能够适应新的task.</p>
+<h2 id="1-2-Meta-Learning-概述"><a href="#1-2-Meta-Learning-概述" class="headerlink" title="1.2 Meta Learning 概述"></a>1.2 Meta Learning 概述</h2><p>Meta Learning (ML) 的思路与Deep Learning不同，ML学习的是task之间的关系，而DL是在task中学习task的规律与分布。所以ML能够运用学习到的tasks之间的不同，在面对新的task之时可以只通过少量的的样本就能够适应新的task.</p>
 <p>在ML中，task ($T$)作为输入，与样本$x$一同输入模型中，如下图所示：</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fyasoj6wb5j30gu09e3yp.jpg" alt="image-20181218133955023"></p>
 <p>当使用ML学习到tasks之间的关系后，使得模型可以从更高层级对任务进行把握，体现在对于不同任务的快速适应性（快速迁移能力），先验知识得到充分地吸收利用以及保存。</p>
@@ -520,7 +520,8 @@
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fy9o6j7o78j30ov0ccn1o.jpg" alt="&quot;few shot learning&quot;的图片搜索结果"></p>
 <p><strong>解决思路</strong>：学习一个端对端 (end-to-end)的算法$A$, 可以称为<strong>Meta-Learning</strong>或者<strong>Learning to learn</strong>.</p>
 <h1 id="2-Meta-Learning-详解"><a href="#2-Meta-Learning-详解" class="headerlink" title="2. Meta Learning 详解"></a>2. Meta Learning 详解</h1><p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fyc4t7csoej30is08q74k.jpg" alt="image-20181219172509592"></p>
-<p>对比第一节的流程图，task信息的提供者变为$D_{train}$, 测试数据$D_{test}$输入之后输出预测的结果$y_{test}$.</p>
+<p>对比第一节的流程图，task信息的提供者变为$D_{train}$, 测试数据$D_{test}$输入之后输出预测的结果$y_{test}$.接下来会简述几种$D_{train}$(task信息)影响模型的方式：</p>
+<h2 id="2-1-使用HyperNetwork生成参数"><a href="#2-1-使用HyperNetwork生成参数" class="headerlink" title="2.1 使用HyperNetwork生成参数"></a>2.1 使用HyperNetwork生成参数</h2><p><a href="https://arxiv.org/abs/1609.09106" title="HyperNetwork" target="_blank" rel="noopener">HyperNetwork</a>的主要思路就是使用一个参数网络来生成目标网络的参数供目标网络使用。在</p>
 
         
     
