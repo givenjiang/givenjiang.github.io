@@ -46,7 +46,7 @@
     
     <title>
         
-            Meta Learning: A Review (DL) | 
+            Meta Learning: A Review (Few shot Learning) | 
         
         Given&#39;s Blog
     </title>
@@ -240,14 +240,14 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://story.givenjiang.com/2018/12/17/meta-learnig-review/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Meta Learning: A Review (DL) | Given&#39;s Blog">
+    <meta property="og:title" content="Meta Learning: A Review (Few shot Learning) | Given&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="">
     <meta property="og:article:tag" content="Meta Learning"> 
 
     
         <meta property="article:published_time" content="Mon Dec 17 2018 11:51:49 GMT+0900">
-        <meta property="article:modified_time" content="Wed Dec 19 2018 20:34:45 GMT+0900">
+        <meta property="article:modified_time" content="Thu Dec 20 2018 17:33:30 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -268,9 +268,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "mainEntityOfPage": "https://story.givenjiang.com/2018/12/17/meta-learnig-review/index.html",
-    "headline": "Meta Learning: A Review (DL)",
+    "headline": "Meta Learning: A Review (Few shot Learning)",
     "datePublished": "Mon Dec 17 2018 11:51:49 GMT+0900",
-    "dateModified": "Wed Dec 19 2018 20:34:45 GMT+0900",
+    "dateModified": "Thu Dec 20 2018 17:33:30 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -353,7 +353,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Motivation"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Motivation</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-Deep-Learning现状"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 Deep Learning现状</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-Meta-Learning-概述"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 Meta Learning 概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-从Few-shot-Learning说起"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 从Few-shot Learning说起</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Meta-Learning-详解"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Meta Learning 详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-使用HyperNetwork生成参数"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 使用HyperNetwork生成参数</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Motivation"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Motivation</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-Deep-Learning现状"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 Deep Learning现状</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-Meta-Learning-概述"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 Meta Learning 概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-从Few-shot-Learning说起"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 从Few-shot Learning说起</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Meta-Learning-详解"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Meta Learning 详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-使用HyperNetwork生成参数"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 使用HyperNetwork生成参数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-1-训练HyperNetwork"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">2.1.1 训练HyperNetwork</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-2-改变命名方式"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">2.1.2 改变命名方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-Conditional-Neural-Network-条件神经网络"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 Conditional Neural Network 条件神经网络</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-基于梯度的方法-MAML"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.3 基于梯度的方法 (MAML)</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -376,7 +376,7 @@
         <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://ws4.sinaimg.cn/large/006tNbRwgy1fy9kfjolcvj30ga0abjui.jpg)">
     
             <p class="article-headline-p">
-                Meta Learning: A Review (DL)
+                Meta Learning: A Review (Few shot Learning)
             </p>
         </div>
 
@@ -436,7 +436,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Meta Learning: A Review (DL)&url=https://story.givenjiang.com/2018/12/17/meta-learnig-review/index.html&pic=https://story.givenjiang.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Meta Learning: A Review (Few shot Learning)&url=https://story.givenjiang.com/2018/12/17/meta-learnig-review/index.html&pic=https://story.givenjiang.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -445,7 +445,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Meta Learning: A Review (DL)&url=https://story.givenjiang.com/2018/12/17/meta-learnig-review/index.html&via=Given" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Meta Learning: A Review (Few shot Learning)&url=https://story.givenjiang.com/2018/12/17/meta-learnig-review/index.html&via=Given" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -520,11 +520,22 @@
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fy9o6j7o78j30ov0ccn1o.jpg" alt="&quot;few shot learning&quot;的图片搜索结果"></p>
 <p><strong>解决思路</strong>：学习一个端对端 (end-to-end)的算法$A$, 可以称为<strong>Meta-Learning</strong>或者<strong>Learning to learn</strong>.</p>
 <h1 id="2-Meta-Learning-详解"><a href="#2-Meta-Learning-详解" class="headerlink" title="2. Meta Learning 详解"></a>2. Meta Learning 详解</h1><p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fyc4t7csoej30is08q74k.jpg" alt="image-20181219172509592"></p>
-<p>对比第一节的流程图，task信息的提供者变为$D_{train}$, 测试数据$D_{test}$输入之后输出预测的结果$y_{test}$.接下来会简述几种$D_{train}$(task信息)影响模型的方式：</p>
+<p>对比第一节的流程图，task信息的提供者变为$D_{train}$, 测试数据$D_{test}$输入之后输出预测的结果$y_{test}$.接下来会简述几种$D_{train}$(task信息)影响模型的方式 (Meta Learning的种类)：</p>
 <h2 id="2-1-使用HyperNetwork生成参数"><a href="#2-1-使用HyperNetwork生成参数" class="headerlink" title="2.1 使用HyperNetwork生成参数"></a>2.1 使用HyperNetwork生成参数</h2><p><a href="https://arxiv.org/abs/1609.09106" target="_blank" rel="noopener">HyperNetwork</a>的主要思路就是使用一个参数网络来生成目标网络的参数供目标网络使用。用流程图表示如下：</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fyc6ya742ij30is0d8t98.jpg" alt="image-20181219183913854"></p>
-<p>在这里，HyperNetwork作为一个meta network发挥作用，与传统DL方法不同的是，不直接学习参数$\theta$ ，而是通过meta network来学习生成参数$\theta​$, 这也是ML又被称为Learning to learn的原因。</p>
-
+<p>在这里，HyperNetwork作为一个meta network发挥作用，与传统DL方法不同的是，不直接学习参数$\theta$ ，而是通过meta network来学习生成参数$\theta$, 这也是ML又被称为Learning to learn的原因。</p>
+<h3 id="2-1-1-训练HyperNetwork"><a href="#2-1-1-训练HyperNetwork" class="headerlink" title="2.1.1 训练HyperNetwork"></a>2.1.1 训练HyperNetwork</h3><p>为了训练这个网络，我们通常采用<strong>episodic training</strong>的方法。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fyd4dmocctj31340o6k9v.jpg" alt="image-20181220135500623"></p>
+<p>一个episode就是一个task，包含训练集$D_{train}$和测试集$D_{test}$. 我们使用训练集$D_{train}$训练网络$h(\cdot)$，获得网络$f(\cdot)$的参数后向网络$f(\cdot)$输入测试集数据$D_{test}$，从而得到预测的标签，最后结合测试集样本的标签计算loss后使用梯度下降进行训练。其中loss损失函数的定义如下：<br>$$<br>Loss(\theta;D_{train}, D_{test})=\frac{1}{|D_{test}|}\sum_{(x’_i,y’<em>i)\in D</em>{test}}{-logp_\theta(y’_i|x’<em>i,D</em>{train})}<br>$$<br>在loss公式中，$p_\theta(y’_i|x’<em>i,D</em>{train})$ 的形式随着meta learner的不同选择而改变。</p>
+<h3 id="2-1-2-改变命名方式"><a href="#2-1-2-改变命名方式" class="headerlink" title="2.1.2 改变命名方式"></a>2.1.2 改变命名方式</h3><p>为了避免混淆，训练集和测试集的命名方式需要作出如下改变：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fyd6nui5a2j312w0i0gnh.jpg" alt="image-20181220151445817"></p>
+<p>episode中的Training set $D_{train}$命名为Support set，而测试集Test set $D_{test}$ 改名为Query set. 总体的Meta-training set和Meta-test set简称为Training set和Test set.</p>
+<p>虽然使用Hypernetwork是最直接的一种Meta Learning的方法，但是目前还没有直接使用Hypernetwork做Few Shot Learning的文章，大多数只是间接地使用到而已。</p>
+<h2 id="2-2-Conditional-Neural-Network-条件神经网络"><a href="#2-2-Conditional-Neural-Network-条件神经网络" class="headerlink" title="2.2 Conditional Neural Network 条件神经网络"></a>2.2 Conditional Neural Network 条件神经网络</h2><p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fyda1bnfvxj30is07eaab.jpg" alt="image-20181220171131158"></p>
+<p>如果将$D_{train}$作为条件直接输入网络$f(\cdot)$中，那么就相当于跳过Hypernetowrk直接暴力地学习整体的数据。这种方法中最具代表性的就是<a href="https://arxiv.org/abs/1609.03499" target="_blank" rel="noopener">Wavenet</a> (<a href="https://arxiv.org/abs/1707.03141" target="_blank" rel="noopener">SNAIL</a>).</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fydalixcqmj30b20lgq4q.jpg" alt="image-20181220173055934"></p>
+<p>Wavenet架构最近很火，以后有机会写一篇文章介绍一下，再次不作赘述。</p>
+<h2 id="2-3-基于梯度的方法-MAML"><a href="#2-3-基于梯度的方法-MAML" class="headerlink" title="2.3 基于梯度的方法 (MAML)"></a>2.3 基于梯度的方法 (MAML)</h2>
         
     
 
