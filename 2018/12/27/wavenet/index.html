@@ -46,7 +46,7 @@
     
     <title>
         
-            论文阅读-WaveNet: A Generative Model for Raw Audio (ICLR2018) | 
+            论文阅读-WaveNet: A Generative Model for Raw Audio | 
         
         Given&#39;s Blog
     </title>
@@ -240,14 +240,14 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://story.givenjiang.com/2018/12/27/wavenet/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="论文阅读-WaveNet: A Generative Model for Raw Audio (ICLR2018) | Given&#39;s Blog">
+    <meta property="og:title" content="论文阅读-WaveNet: A Generative Model for Raw Audio | Given&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="">
     <meta property="og:article:tag" content="Meta Learning"> 
 
     
         <meta property="article:published_time" content="Thu Dec 27 2018 14:10:31 GMT+0900">
-        <meta property="article:modified_time" content="Thu Dec 27 2018 14:13:52 GMT+0900">
+        <meta property="article:modified_time" content="Sat Dec 29 2018 16:16:52 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -268,9 +268,9 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "mainEntityOfPage": "https://story.givenjiang.com/2018/12/27/wavenet/index.html",
-    "headline": "论文阅读-WaveNet: A Generative Model for Raw Audio (ICLR2018)",
+    "headline": "论文阅读-WaveNet: A Generative Model for Raw Audio",
     "datePublished": "Thu Dec 27 2018 14:10:31 GMT+0900",
-    "dateModified": "Thu Dec 27 2018 14:13:52 GMT+0900",
+    "dateModified": "Sat Dec 29 2018 16:16:52 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -348,6 +348,14 @@
     <!-- Left aligned menu below button -->
     
     
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0-Abstract"><span class="post-toc-number">1.</span> <span class="post-toc-text">0 Abstract</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">1 Introduction</span></a></li></ol>
+    </ul>
+    
 
 
 
@@ -368,7 +376,7 @@
         <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://ws2.sinaimg.cn/large/006tNbRwgy1fyl86wzt4ij310g0q4agt.jpg)">
     
             <p class="article-headline-p">
-                论文阅读-WaveNet: A Generative Model for Raw Audio (ICLR2018)
+                论文阅读-WaveNet: A Generative Model for Raw Audio
             </p>
         </div>
 
@@ -428,7 +436,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=论文阅读-WaveNet: A Generative Model for Raw Audio (ICLR2018)&url=https://story.givenjiang.com/2018/12/27/wavenet/index.html&pic=https://story.givenjiang.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=论文阅读-WaveNet: A Generative Model for Raw Audio&url=https://story.givenjiang.com/2018/12/27/wavenet/index.html&pic=https://story.givenjiang.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -437,7 +445,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=论文阅读-WaveNet: A Generative Model for Raw Audio (ICLR2018)&url=https://story.givenjiang.com/2018/12/27/wavenet/index.html&via=Given" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=论文阅读-WaveNet: A Generative Model for Raw Audio&url=https://story.givenjiang.com/2018/12/27/wavenet/index.html&via=Given" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -481,6 +489,10 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>论文地址：<a href="https://arxiv.org/abs/1609.03499" target="_blank" rel="noopener">WaveNet: A Generative Model for Raw Audio</a></p>
+<h1 id="0-Abstract"><a href="#0-Abstract" class="headerlink" title="0 Abstract"></a>0 Abstract</h1><p>Wavenet是一种基于完全概率自回归的可以用于合成音频的深度神经网络模型，可用之前生成的样本预测当前音频样本的概率分布。在语音合成领域，无论是英语还是中文普通话，相对于之前最好的参数式和拼接式系统，人类听众都给予其较高自然度的评价。单一的Wavenet模型还可以以相同的保真度捕捉说话人的特征，并且可以针对说话人在训练后在多个说话人之间切换。如果用于音乐合成，Wavenet则可以高效生成真实度极高的音乐片段，并且可以作为判别模型用于音素识别领域。</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>近期对于<a href="https://arxiv.org/abs/1601.06759" target="_blank" rel="noopener">图像</a>和<a href="https://arxiv.org/abs/1602.02410" target="_blank" rel="noopener">文本</a>等复杂分布进行建模的神经自回归生成模型有所进展，启发于这些进展，本论文研究了原始音频生成技术，使用神经网络架构，并且将像素或者单词的联合概率作为条件概率分布乘积的建模方法，取得了业界最佳的成绩。</p>
+<p>特别是，这些架构可以对上千个随机变量（如<a href="https://arxiv.org/abs/1601.06759" target="_blank" rel="noopener">PixelRNN</a>中的$64\times64$像素）的概率分布进行建模。本文将这些方法应用在宽带原始音频波形生成的应用中，这些音频我拿给我那个拥有很高的短时分辨率，至少16000个/秒样本（见图1）。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fylbthswe4j311m06eq4j.jpg" alt="image-20181227161742972"></p>
 
         
     
