@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Thu Dec 27 2018 14:10:31 GMT+0900">
-        <meta property="article:modified_time" content="Wed Jan 02 2019 21:37:26 GMT+0900">
+        <meta property="article:modified_time" content="Wed Jan 02 2019 21:38:29 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2018/12/27/wavenet/index.html",
     "headline": "论文阅读-WaveNet: A Generative Model for Raw Audio",
     "datePublished": "Thu Dec 27 2018 14:10:31 GMT+0900",
-    "dateModified": "Wed Jan 02 2019 21:37:26 GMT+0900",
+    "dateModified": "Wed Jan 02 2019 21:38:29 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -512,7 +512,7 @@
 <p>堆叠式的扩大卷积模型通过少数几个卷积层就拥有了非常大的感受野，同时保证了输入分辨率和计算效率。在本文中，扩大系数每层都翻倍直到上限为止，如<br>$$<br>1,2,4…,512,1,2,4,…,512,1,2,4,…,512.<br>$$<br>对于这个模型有两个直观的感受：首先随着深度增加，扩大因子的指数增长可以使得感受野呈指数级别增大，例如一组扩大因子为$1,2,4,…,512$的模型拥有1024的感受野，可以等效于使用$1\times1024$尺寸的卷积核进行（非线性）判别式的卷积操作）。其次，多组这样的卷积模块堆叠起来可以进一步增加模型容量和感受野大小。</p>
 <h2 id="2-2-Softmax-分布"><a href="#2-2-Softmax-分布" class="headerlink" title="2.2 Softmax 分布"></a>2.2 Softmax 分布</h2><p>对于单个音频样本的条件概率分布进行建模可以使用混合模型，如<a href="https://publications.aston.ac.uk/373/1/NCRG_94_004.pdf" target="_blank" rel="noopener">混合密度网络</a>(Mixture Density Network)或者<a href="https://arxiv.org/abs/1506.03478" target="_blank" rel="noopener">条件高斯尺度混合模型</a>(MCGSM).然而，PixelRNN一文中指出使用softmax分布更有效，即便是应用于隐含式的连续数据上（例如图像的像素光照强度或者音频的采样值），这种方法同样很有效。原因之一是类别分布更灵活，并且由于对数据的形状没有假定前提，所以其更容易针对特定分布进行建模。</p>
 <p>由于原始音频数据往往以16位整数序列进行保存（每个timestep对应一个值），对于每个timestep的所有可能值，softmax层需要输出65536个概率值，为了便于处理，数据会先进行一个<a href="https://www.vocal.com/wp-content/uploads/2012/05/g711.pdf" target="_blank" rel="noopener">$\mu$律压扩变换</a>，再量化为256个可能值：<br>$$<br>f(x_t)=sign(x_t)\frac{ln(1+\mu|x_t|)}{ln(1+\mu)}<br>$$<br>其中$-1&lt;x_t&lt;1$并且$\mu=255$.与简单的线性量化操作对比，这个非线性量化处理的操作可以对数据更好地重构，特别对于语音数据，我们发现经过这种重构的信号听起来很接近原始信号。</p>
-<h2 id="2-3-门控激活单元"><a href="#2-3-门控激活单元" class="headerlink" title="2.3 门控激活单元"></a>2.3 门控激活单元</h2><p>本文使用与PixelCNN相同的门控激活单元：<br>$$<br>\mathbf{z}=tanh(W_{f,k}<em>x)\odot\sigma(W_{g,k}</em>x)     \tag{2}<br>$$<br>其中*表示卷积操作，$\odot$表示点乘。$\sigma(\cdot)$是sigmoid函数，k代表层数索引，f和g是滤波器和门，$W​$是可学习的卷积核。在初期的实验中，我们发现在对于音频信号建模时，这个非线性变换显著由于ReLU激活函数。</p>
+<h2 id="2-3-门控激活单元"><a href="#2-3-门控激活单元" class="headerlink" title="2.3 门控激活单元"></a>2.3 门控激活单元</h2><p>本文使用与PixelCNN相同的门控激活单元：<br>$$<br>\mathbf{z}=tanh(W_{f,k}*x)\odot\sigma(W_{g,k}*x)     \tag{2}<br>$$<br>其中*表示卷积操作，$\odot$表示点乘。$\sigma(\cdot)$是sigmoid函数，k代表层数索引，f和g是滤波器和门，$W​$是可学习的卷积核。在初期的实验中，我们发现在对于音频信号建模时，这个非线性变换显著由于ReLU激活函数。</p>
 <h2 id="2-4-残差和跳步连接"><a href="#2-4-残差和跳步连接" class="headerlink" title="2.4 残差和跳步连接"></a>2.4 残差和跳步连接</h2><p>本文网络中使用残差和参数化跳步连接，用于加速网络收敛，并且能够使得梯度能在更深的网络中传播。图4中展示了模型中的一个残差模块，实际网络中会将残差模块堆叠起来使用：</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fysbso1vmwj30tu0hwgnw.jpg" alt="image-20190102173551854"></p>
 <h2 id="2-5-WaveNet-条件建模"><a href="#2-5-WaveNet-条件建模" class="headerlink" title="2.5 WaveNet 条件建模"></a>2.5 WaveNet 条件建模</h2><p>给定一个额外输入$h$，模型可以针对这个给定输入进行条件分布建模，这时候公式$(1)$变为：<br>$$<br>p(x|h)=\prod_{t=1}^T{p(x_t|x_1,…,x_{t-1},\mathbf{h})} \tag{3}<br>$$<br>通过对额外的变量进行条件建模，我们可以引导模型产生特定特点的音频。例如，在多人对话场景下，通过将说话人身份作为额外变量输入模型中，我们可以使用模型产生特定说话人的音频。同样在TTS任务中，我们需要将额外的关于文本的信息输入给模型（例如文本的类别：新闻类或者小说类）。</p>
