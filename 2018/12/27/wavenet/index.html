@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Thu Dec 27 2018 14:10:31 GMT+0900">
-        <meta property="article:modified_time" content="Sat Dec 29 2018 16:16:52 GMT+0900">
+        <meta property="article:modified_time" content="Wed Jan 02 2019 18:17:47 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2018/12/27/wavenet/index.html",
     "headline": "论文阅读-WaveNet: A Generative Model for Raw Audio",
     "datePublished": "Thu Dec 27 2018 14:10:31 GMT+0900",
-    "dateModified": "Sat Dec 29 2018 16:16:52 GMT+0900",
+    "dateModified": "Wed Jan 02 2019 18:17:47 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -353,7 +353,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0-Abstract"><span class="post-toc-number">1.</span> <span class="post-toc-text">0 Abstract</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">1 Introduction</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Abstract"><span class="post-toc-number">1.</span> <span class="post-toc-text">Abstract</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">1 Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-WaveNet"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. WaveNet</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-扩大因果卷积"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2.1 扩大因果卷积</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-Softmax-分布"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.2 Softmax 分布</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-门控激活单元"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">2.3 门控激活单元</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-4-残差和跳步连接"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">2.4 残差和跳步连接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-5-WaveNet-条件建模"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">2.5 WaveNet 条件建模</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-6-上下文堆栈"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">2.6 上下文堆栈</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-Experiments（略）"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. Experiments（略）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-Conclusion"><span class="post-toc-number">5.</span> <span class="post-toc-text">4. Conclusion</span></a></li></ol>
     </ul>
     
 
@@ -489,10 +489,38 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>论文地址：<a href="https://arxiv.org/abs/1609.03499" target="_blank" rel="noopener">WaveNet: A Generative Model for Raw Audio</a></p>
-<h1 id="0-Abstract"><a href="#0-Abstract" class="headerlink" title="0 Abstract"></a>0 Abstract</h1><p>Wavenet是一种基于完全概率自回归的可以用于合成音频的深度神经网络模型，可用之前生成的样本预测当前音频样本的概率分布。在语音合成领域，无论是英语还是中文普通话，相对于之前最好的参数式和拼接式系统，人类听众都给予其较高自然度的评价。单一的Wavenet模型还可以以相同的保真度捕捉说话人的特征，并且可以针对说话人在训练后在多个说话人之间切换。如果用于音乐合成，Wavenet则可以高效生成真实度极高的音乐片段，并且可以作为判别模型用于音素识别领域。</p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Wavenet是一种基于完全概率自回归的可以用于合成音频的深度神经网络模型，可用之前生成的样本预测当前音频样本的概率分布。在语音合成领域，无论是英语还是中文普通话，相对于之前最好的参数式和拼接式系统，人类听众都给予其较高自然度的评价。单一的Wavenet模型还可以以相同的保真度捕捉说话人的特征，并且可以针对说话人在训练后在多个说话人之间切换。如果用于音乐合成，Wavenet则可以高效生成真实度极高的音乐片段，并且可以作为判别模型用于音素识别领域。</p>
 <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>近期对于<a href="https://arxiv.org/abs/1601.06759" target="_blank" rel="noopener">图像</a>和<a href="https://arxiv.org/abs/1602.02410" target="_blank" rel="noopener">文本</a>等复杂分布进行建模的神经自回归生成模型有所进展，启发于这些进展，本论文研究了原始音频生成技术，使用神经网络架构，并且将像素或者单词的联合概率作为条件概率分布乘积的建模方法，取得了业界最佳的成绩。</p>
 <p>特别是，这些架构可以对上千个随机变量（如<a href="https://arxiv.org/abs/1601.06759" target="_blank" rel="noopener">PixelRNN</a>中的$64\times64$像素）的概率分布进行建模。本文将这些方法应用在宽带原始音频波形生成的应用中，这些音频我拿给我那个拥有很高的短时分辨率，至少16000个/秒样本（见图1）。</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fylbthswe4j311m06eq4j.jpg" alt="image-20181227161742972"></p>
+<p>本文介绍的WaveNet是一个基于<a href="https://arxiv.org/abs/1601.06759" target="_blank" rel="noopener">PixelCNN</a>架构的语音生成模型。本研究的主要贡献有以下几点：</p>
+<ul>
+<li>展示了WaveNet可以生成原始的语音信号，语音信号的自然度可以由人类裁判进行主观判断，这在语音合成(TTS)领域还未见报道；</li>
+<li>为了处理原始语音生成任务中大时间跨度依赖的问题，我们开发了新的基于扩大因果卷积的架构，这种架构拥有非常大的感受野；</li>
+<li>展示了在以说话人身份进行训练的条件下，单个模型也可以生成不同风格的语音；</li>
+<li>同样的架构在小规模的语音识别数据集的测试中获得了良好的成绩，同时在音乐等其他形式的音频信号生成中也拥有可观的前景。</li>
+</ul>
+<p>我们相信WaveNet可以为众多语音生成的应用（例如语音生成TTS、音乐、语音增强、语音转换和声源分离等）提供一个灵活的框架。</p>
+<h1 id="2-WaveNet"><a href="#2-WaveNet" class="headerlink" title="2. WaveNet"></a>2. WaveNet</h1><p>在这片论文中，我们介绍了一个新的生成模型，这个模型能够直接产生音频波形，音频波形的联合概率$x={x_1,…,x_T}$可以分解成一系列条件概率分布的乘积：<br>$$<br>p(x)=\sum_{t=1}^T{p(x_t|x_1,…,x_{t-1})}     \tag{1}<br>$$<br>与PixelCNN类似，条件概率分布通过若干卷积层进行建模。网络中没有下采样层，网络的输出和输入具有相同的时间维度。网络通过softmax层输出一个$x_t$上的类别分布，使用最大对数似然的方法对参数进行优化。使用对数似然优化的原因是容易观察模型是否发生过拟合或者欠拟合的情况。</p>
+<h2 id="2-1-扩大因果卷积"><a href="#2-1-扩大因果卷积" class="headerlink" title="2.1 扩大因果卷积"></a>2.1 扩大因果卷积</h2><p>WaveNet的主要部分是因果卷积(Causal Convolutions).因果卷积确保了模型的输出不会违反数据进入的顺序，因果卷积的架构如图2所示，即：模型在时刻$t$输出的预测$p(x_t|x_1,…,x_{t-1})$不依赖任何一个未来时刻的数据$x_{t+1},x_{t+2},…,x_T$.</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fys8q39dpsj30xy0dy41r.jpg" alt="image-20190102154933120"></p>
+<p>对于图像输入来说，因果卷积是一个遮蔽卷积(Masked Convolution)，通过构造一个遮蔽张量和卷积核进行点乘来实现。对于音频输入，只需要将正常卷积的输出平移几个timesteps即可。</p>
+<p>在训练阶段，所有Ground Truth的timesteps都是已知的，因此对于所有timesteps的条件概率预测是可以并行运行的。而在生成阶段。预测的模式是串行进行的：每个预测得出的结果都会被传回网络，作为输入用于预测下一个结果。</p>
+<p>由于因果卷积模型中没有循环连接，所以训练起来要比RNN模型更高效，尤其是对于长句子的训练。因果卷积模型存在的一个问题是它的层数太多，以及需要很大的卷积核来扩大其感受野。在图2中，模型的感受野只有5（感受野=层数+卷积核尺寸-1）。在本文中，我们通过使用扩大卷积(Dilated Convolutions)来增大模型的感受野，并能够保证近似的计算成本。</p>
+<p>扩大卷积（又称为带洞卷积）是卷积核在与比自身尺寸更大的数据进行卷积时跳步的卷积方式。其效果类似于用0为卷积核补边，但是效率更高。与正常卷积相比，扩大卷积在执行粗粒度卷积操作时更有效。这种优势与池化或者跳步卷积(Strided Convolutions)类似，只是扩大卷积可以保持输入输出的尺寸相同。作为特例，当扩大因子等于1的时候，扩大卷机就是标准卷积。在图3中展示了扩大因子为1，2，4，8时的扩大卷积模型，扩大卷积在之前就已经在不同的上下文情景中被使用，例如<a href="https://link.springer.com/chapter/10.1007/978-3-642-75988-8_28" target="_blank" rel="noopener">信号处理</a>和<a href="http://arxiv.org/abs/1511.07122" target="_blank" rel="noopener">图像分割</a>。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fysaaau0wxj30xu0eygq4.jpg" alt="image-20190102164337471"></p>
+<p>堆叠式的扩大卷积模型通过少数几个卷积层就拥有了非常大的感受野，同时保证了输入分辨率和计算效率。在本文中，扩大系数每层都翻倍直到上限为止，如<br>$$<br>1,2,4…,512,1,2,4,…,512,1,2,4,…,512.<br>$$<br>对于这个模型有两个直观的感受：首先随着深度增加，扩大因子的指数增长可以使得感受野呈指数级别增大，例如一组扩大因子为$1,2,4,…,512$的模型拥有1024的感受野，可以等效于使用$1\times1024$尺寸的卷积核进行（非线性）判别式的卷积操作）。其次，多组这样的卷积模块堆叠起来可以进一步增加模型容量和感受野大小。</p>
+<h2 id="2-2-Softmax-分布"><a href="#2-2-Softmax-分布" class="headerlink" title="2.2 Softmax 分布"></a>2.2 Softmax 分布</h2><p>对于单个音频样本的条件概率分布进行建模可以使用混合模型，如<a href="https://publications.aston.ac.uk/373/1/NCRG_94_004.pdf" target="_blank" rel="noopener">混合密度网络</a>(Mixture Density Network)或者<a href="https://arxiv.org/abs/1506.03478" target="_blank" rel="noopener">条件高斯尺度混合模型</a>(MCGSM).然而，PixelRNN一文中指出使用softmax分布更有效，即便是应用于隐含式的连续数据上（例如图像的像素光照强度或者音频的采样值），这种方法同样很有效。原因之一是类别分布更灵活，并且由于对数据的形状没有假定前提，所以其更容易针对特定分布进行建模。</p>
+<p>由于原始音频数据往往以16位整数序列进行保存（每个timestep对应一个值），对于每个timestep的所有可能值，softmax层需要输出65536个概率值，为了便于处理，数据会先进行一个<a href="https://www.vocal.com/wp-content/uploads/2012/05/g711.pdf" target="_blank" rel="noopener">$\mu$律压扩变换</a>，再量化为256个可能值：<br>$$<br>f(x_t)=sign(x_t)\frac{ln(1+\mu|x_t|)}{ln(1+\mu)}<br>$$<br>其中$-1&lt;x_t&lt;1$并且$\mu=255$.与简单的线性量化操作对比，这个非线性量化处理的操作可以对数据更好地重构，特别对于语音数据，我们发现经过这种重构的信号听起来很接近原始信号。</p>
+<h2 id="2-3-门控激活单元"><a href="#2-3-门控激活单元" class="headerlink" title="2.3 门控激活单元"></a>2.3 门控激活单元</h2><p>本文使用与PixelCNN相同的门控激活单元：<br>$$<br>\bold{z}=tanh(W_{f,k}<em>x)\bigodot\sigma(W_{g,k}</em>x) \tag{2}<br>$$<br>其中$*$表示卷积操作，$\bigodot$表示点乘。$\sigma(\cdot)$是sigmoid函数，k代表层数索引，f和g是滤波器和门，$W$是可学习的卷积核。在初期的实验中，我们发现在对于音频信号建模时，这个非线性变换显著由于ReLU激活函数。</p>
+<h2 id="2-4-残差和跳步连接"><a href="#2-4-残差和跳步连接" class="headerlink" title="2.4 残差和跳步连接"></a>2.4 残差和跳步连接</h2><p>本文网络中使用残差和参数化跳步连接，用于加速网络收敛，并且能够使得梯度能在更深的网络中传播。图4中展示了模型中的一个残差模块，实际网络中会将残差模块堆叠起来使用：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fysbso1vmwj30tu0hwgnw.jpg" alt="image-20190102173551854"></p>
+<h2 id="2-5-WaveNet-条件建模"><a href="#2-5-WaveNet-条件建模" class="headerlink" title="2.5 WaveNet 条件建模"></a>2.5 WaveNet 条件建模</h2><p>给定一个额外输入$h$，模型可以针对这个给定输入进行条件分布建模，这时候公式$(1)$变为：<br>$$<br>p(x|h)=\prod_{t=1}^T{p(x_t|x_1,…,x_{t-1},\bold{h})} \tag{3}<br>$$<br>通过对额外的变量进行条件建模，我们可以引导模型产生特定特点的音频。例如，在多人对话场景下，通过将说话人身份作为额外变量输入模型中，我们可以使用模型产生特定说话人的音频。同样在TTS任务中，我们需要将额外的关于文本的信息输入给模型（例如文本的类别：新闻类或者小说类）。</p>
+<p>基于额外变量进行条件建模有两种方式：全局条件和局部条件。全局条件的特点是，通过单一的隐式表达$h$作为额外输入，在所有timesteps上影响输出分布，例如被嵌入到TTS模型中的说话人。全局条件下的公式$(2)$就变成：<br>$$<br>\bold{z}=tanh(W_{f,k}<em>x+V^T_{f,k}\bold{h})\bigodot\sigma(W_{g,k}</em>x+V^T_{g,k}\bold{h})<br>$$<br>其中$V_{<em>,k}$是一个可以学习的线形投影，$V_{</em>,k}^T\bold{h}$在所有时间节点上进行传播。</p>
+<p>对于局部条件，我们准备第二时间序列$h_t$，这个第二时间序列可以通过对原始音频信号进行低频采样获得，例如TTS模型中的语言学特征。我们先用转置卷积网络将音频信号映射到一个新的时间序列$y=f(h)$上，时期具有和音频信号相同的分辨率，然后交给激活单元处理：<br>$$<br>\bold{z}=tanh(W_{f,k}<em>x+V_{f,k}</em>\bold{y})\bigodot\sigma(W_{g,k}<em>x+V_{g,k}</em>\bold{y})<br>$$<br>其中$V_{f,k}<em>\bold{y}$是一个$1\times1$卷积。作为转置卷积网络的替代方法，也可以使用$V_{f,k}</em>\bold{y}$，然后沿着时间重复这些值，但是在我们的实验中，这种方法的表现较差。</p>
+<h2 id="2-6-上下文堆栈"><a href="#2-6-上下文堆栈" class="headerlink" title="2.6 上下文堆栈"></a>2.6 上下文堆栈</h2><p>我们提出了多种方法来增加WaveNet的感受野大小：增加扩大卷积模块数，使用更多扩大卷积层，更大的卷积核，更大的卷积因子，或者将上述方法结合使用。增加感受野的一个补充方法是使用一个独立切更小的上下文堆栈来处理语音信号的长跨度信息，并且局部调试一个更大的WaveNet只用来处理语音信号中更短的局部信息（在结尾处截断）。可以使用多个变长的具有不同数量隐藏单元的上下文堆栈，拥有更大感受野的堆栈中，其每层所含有的隐藏单元数量越少。上下文堆栈还能使用池化层来降低运行频率，这使得计算成本更合理，也与用更长的跨度对时间相关性建模会使体量更小的直觉相吻合。</p>
+<h1 id="3-Experiments（略）"><a href="#3-Experiments（略）" class="headerlink" title="3. Experiments（略）"></a>3. Experiments（略）</h1><h1 id="4-Conclusion"><a href="#4-Conclusion" class="headerlink" title="4. Conclusion"></a>4. Conclusion</h1><p>本论文提出了WaveNet，该模型可以直接对原始音频数据进行建模。WaveNet是自回归的，结合了因果卷积和扩大卷积，使得感受野随着模型的深度增加而成指数级增加。感受野的增加对于原始语音建模中的大跨度依赖非常重要。我们还展示了WaveNet如何基于其他额外输入进行全局（说话人身份）和局部（语言学特征）条件建模。</p>
+<p>应用于TTS任务时，WaveNet生成的语音样本在主观自然度上优于目前的最佳模型。最后，WaveNet在音乐建模和语音识别上也有良好的效果。</p>
 
         
     
