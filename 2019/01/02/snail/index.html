@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Wed Jan 02 2019 22:01:33 GMT+0900">
-        <meta property="article:modified_time" content="Wed Jan 02 2019 22:35:29 GMT+0900">
+        <meta property="article:modified_time" content="Thu Jan 03 2019 20:43:09 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2019/01/02/snail/index.html",
     "headline": "论文阅读-A SIMPLE NEURAL ATTENTIVE META-LEARNER (SNAIL)",
     "datePublished": "Wed Jan 02 2019 22:01:33 GMT+0900",
-    "dateModified": "Wed Jan 02 2019 22:35:29 GMT+0900",
+    "dateModified": "Thu Jan 03 2019 20:43:09 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -353,7 +353,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Abstract"><span class="post-toc-number">1.</span> <span class="post-toc-text">Abstract</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Abstract"><span class="post-toc-number">1.</span> <span class="post-toc-text">Abstract</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Meta-Learning-Preliminaries"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. Meta-Learning Preliminaries</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-A-Simple-Neural-Attentive-Learner"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. A Simple Neural Attentive Learner</span></a></li></ol>
     </ul>
     
 
@@ -489,7 +489,14 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>论文地址：<a href="https://arxiv.org/abs/1707.03141" target="_blank" rel="noopener">SNAIL</a></p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>深度神经网络的发展受益于海量数据，但是它常常会受制于特定稀缺的数据或者需要快速适应特殊任务的场景。针对上述问题，最近基于元学习(Meta-Learning)的工作提出可以训练一个meta-learner去学习相似任务的分布，</p>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>深度神经网络的发展受益于海量数据，但是它常常会受制于特定稀缺的数据或者需要快速适应特殊任务的场景。针对上述问题，最近基于元学习(Meta-Learning)的工作提出可以训练一个元学习器(meta-learner)去学习相似任务的分布，实际上是通过学习一个可以体现各任务本质的高层级的策略。但是最近很多的元学习方法都是手工定制的，或者就是针对特定应用定制架构，抑或是硬编码算法模块用于指导meta-learner完成任务。我们提出了一种简单通用的meta-learner架构，它基于一种先进的时域卷积和软注意力机制的结合架构；时域卷积用于从过去的经验中聚合信息，软注意力机制用于精确定位特定的信息。我们在几个著名的benchmark上验证了SNAIL，无论在监督学习或者强化学习的任务上，SNAIL都取得了state-of-the-art的性能评价。</p>
+<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>快速学习能力是区别人类和其他动物的一个标志性的特征。人类能够高效地利用先验知识和经验去快速地学习新的技能。但是对于人工的学习器来说，当面对少量可用数据或者新的任务的的时候，它们完成传统监督学习或者强化学习任务的表现都比较差。</p>
+<p>元学习通过拓展学习器的视野到相关任务之间的分布来克服上述问题。相对于只在一个单个任务上训练学习器（目标是泛化应用到那些从相似数据分布采集的从未见过的数据上），元学习器的训练发生在一系列相似任务的分布上（目标是学习一个可以泛化到一系列相关但是从未见过的任务上的策略，这些任务采样自一个相似的任务分布）。一般的，一个优秀的的学习器可以发现数据点之间的泛化规律，而一个优秀的元学习器则能够学习到一个可以泛化到不同任务的算法。</p>
+<p>最近提出的元学习方法拥有的良好性能是建立在架构或者算法层级上的手工设计，它们之中有的为了特定的应用开发，有的已经内嵌了高层级的策略。无论如何，能够在任意任务上泛化使用的通用优化策略的获得对于手工设计的元学习器很不容易，所以元学习器需要具有一定的灵活性以面对不同的任务，所以这样的元学习器应该具有高效表达以及灵活通用的模型架构。</p>
+<p>元学习可以表达为一个seq2seq问题；已有的方法符合这一观点，元学习器的瓶颈在于内化和借鉴先验知识的能力。因此，我们提出了一系列模型去克服上述缺点：我们在模型中加入了时域卷积，时域卷积使得元学习器可以从过去经验中汇总上下文信息。同时，我们在模型中使用了因果注意机制，这种注意力机制可以使得元学习器可以精确从上下文中定位特定信息。我们在著名的元学习监督学习benchmarks: Omniglot和mini-Imagenet上，以及强化学习benchmarks: multi-armed bandits, tabular Markov Decision processes (MDPs), visual navigation, and continuous control上验证了SNAIL. 在所有的测试项目中，相较于其他优秀的类相关(domain-specific)和基于嵌入算法先验的方法，SNAIL以显著优势取得了state-of-the-art的性能评价。</p>
+<h1 id="2-Meta-Learning-Preliminaries"><a href="#2-Meta-Learning-Preliminaries" class="headerlink" title="2. Meta-Learning Preliminaries"></a>2. Meta-Learning Preliminaries</h1><p>在我们深入介绍SNAIL之前，我们会先介绍符号标记和对元学习的公式化问题。正如Section 1中简述的，元学习的目标是实现任务之间的泛化而不是数据点之间的泛化。每个任务$\mathcal{T}_i$ 是不确定的，由输入$x_t$，输出$a_t$，损失函数$\mathcal{L}_i(x_t,a_t)$，转移分布$P_i(x_t|x_{t-1},a_{t-1})$以及episode长度$H_i$.一个元学习器可以建模为分布$\pi(a_t|x_1,…,x_t;\theta)$，其中$\theta$是模型参数。任务的概率分布是$\mathcal{T}=P(\mathcal{T}<em>i)$,元学习器的目标是求得最小化期望损失时的参数$\theta$.<br>$$<br>\min</em>{\theta}\mathbb{E_{\mathcal{T}<em>i\sim\mathcal{T}}}{[\sum</em>{t=0}^{H_i}\mathcal{L}_i(x_t,a_t)]},<br>$$<br>where $x_t\sim P_i(x_t|x_{t-1},a_{t-1}), a_t\sim \pi(a_t|x_1,…,x_t;\theta)$</p>
+<p>元学习器通过最优化各个从任务分布$\mathcal{T}$中采样的任务下（或者mini-batches任务下的）的期望损失进行训练。在测试环节，元学习器会在从未见过的任务$\mathcal{\widetilde{T}}=P(\widetilde{\mathcal{T}}_i)$上进行进行测试这个任务分布与训练时采用的任务分布$\mathcal{T}$是相似的</p>
+<h1 id="3-A-Simple-Neural-Attentive-Learner"><a href="#3-A-Simple-Neural-Attentive-Learner" class="headerlink" title="3. A Simple Neural Attentive Learner"></a>3. A Simple Neural Attentive Learner</h1><p>我们提出的方法的原则和动机时简单和多用途：</p>
 
         
     
