@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Wed Jan 02 2019 22:01:33 GMT+0900">
-        <meta property="article:modified_time" content="Fri Jan 04 2019 14:09:11 GMT+0900">
+        <meta property="article:modified_time" content="Sat Jan 05 2019 17:58:24 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2019/01/02/snail/index.html",
     "headline": "论文阅读-A SIMPLE NEURAL ATTENTIVE META-LEARNER (SNAIL)",
     "datePublished": "Wed Jan 02 2019 22:01:33 GMT+0900",
-    "dateModified": "Fri Jan 04 2019 14:09:11 GMT+0900",
+    "dateModified": "Sat Jan 05 2019 17:58:24 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -353,7 +353,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Abstract"><span class="post-toc-number">1.</span> <span class="post-toc-text">Abstract</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Meta-Learning-Preliminaries"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. Meta-Learning Preliminaries</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-A-Simple-Neural-Attentive-Learner"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. A Simple Neural Attentive Learner</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Abstract"><span class="post-toc-number">1.</span> <span class="post-toc-text">Abstract</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Meta-Learning-Preliminaries"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. Meta-Learning Preliminaries</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-A-Simple-Neural-Attentive-Learner"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. A Simple Neural Attentive Learner</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-Modular-Building-Blocks"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1 Modular Building Blocks</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -499,6 +499,14 @@
 <h1 id="3-A-Simple-Neural-Attentive-Learner"><a href="#3-A-Simple-Neural-Attentive-Learner" class="headerlink" title="3. A Simple Neural Attentive Learner"></a>3. A Simple Neural Attentive Learner</h1><p>我们提出的方法的原则和动机是结构简单和多用途：一个元学习器要能够普遍地适用于监督学习和强化学习。同时它也需要拥有足够的泛化能力能够支撑其学习到一个最优化策略，而不是去使用一个已经嵌入的策略。</p>
 <p><a href="https://arxiv.org/abs/1605.06065" target="_blank" rel="noopener">Santoro et al. (2016)</a>考虑一个近似针对元学习问题的建模，研究了使用循环神经网络(RNNs)去构建元学习器。尽管这样的架构简单且通用，但是其性能超过了那些给予手工设计的方法（这些会在Section 4中进行介绍）。我们认为这样优秀的性能得益于传统RNNs架构通过将信息保存在隐藏节点中，使得信息得以从当前时刻传播到下一时刻；这种短时线形依赖限制了其在面对复杂数据流计算时的性能。</p>
 <p><a href="https://arxiv.org/abs/1609.03499" target="_blank" rel="noopener">van den Oord et al. (2016a)</a>提出了一系列架构用于生成串行数据（它们的数据是音频），它们在时域上运用了一维扩大卷积技术。因为这些时域卷积是因果的，所以数据的生成仅仅依赖过去的信息而非未来的。相比于传统的RNNs，它们提供了更加直接的高速的方式访问过去的信息，使得它们能够在定长的时域上下文中实现更加复杂的计算。但是其在处理长序列的时候，扩大率(Dilation rates)通常会成指数增长，所需的网络层数与序列长度成对数关系。因此，它们对于信息的回溯更加粗糙；它们的容量限制和位置依赖限制了其作为元学习器的性能，作为元学习器它们应该能够充分利用持续增长的经验。</p>
+<p>与此相反，软注意力机制(特指<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Vaswani et al. (2017a)</a>)允许模型在一个近乎无限长的上下文中精准定位特定的信息。它将上下文看作是一个无序的关键字存储，这个存储的排列根据上下文每个元素的内容来定。但是这种对于位置依赖的缺失可以看作是一种缺点，特别是应用在强化学习的时候，环境、动作和反馈本质上都是串行连续的。</p>
+<p>除去时域卷积核注意力机制它们各自的缺点，时域卷积还是拥有在访问有限上下文时高带宽的优势，而注意力机制可以精确访问无限长度的上下文内容。所以我们提出了可以综合上述两种优势的SNAIL，我们在进行因果注意操作的时候使用时域卷积来产生索引(context?). 通过在TC层之间插入因果注意层，SNAIL可以以高带宽访问过去的经验而不会收到经验量的限制。通过在模型中的多个阶段使用注意力机制，SNAIL可以学习到应该从经验中提取怎样的信息以及一个可靠且简单的特征表示。作为附加的优势，SNAIL相对于传统RNNs（例如LSTM或者GRUs）更加易于训练且可以只通过一次前向传播就处理整个序列，因为这些传统模型都依赖时域线性隐含状态。图1简要展示了SNAIL模型，后面我们将在Section 3.1中介绍模型架构。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fyvrbh0kn3j318w0u07fb.jpg" alt="image-20190105164934616"></p>
+<p>图1：SNAIL的概览图；在本图中，两个TC层组成的块（橙色）与因果层（绿色交错排列）。在监督学习和强化学习上可以使用相同的SNAIL模型架构。</p>
+<p>应用在监督学习时，SNAIL在时刻$1,…,t-1$接收一个序列的样本-标签对$(x_1,y_1),…,(x_{t-1},y_{t-1})$,在$t$时刻它接收到无标签的样本输入$(x_t,-)$.然后它根据之前接收到的有标签的样本对输入样本$x_t$作出预测。</p>
+<p>应用在强化学习时，模型会接收到一个观察-动作-反馈包序列$(o_1,-,-),…,(o_t,a_{t-1},r_{t-1})$.    在时刻$t$的时候，模型通过一个分布采样结合当前观察$o_t$产生动作$a_t$,这个分布取决于之前的观察、动作和反馈。重要的是，根据之前meta-RL的工作(<a href="https://arxiv.org/abs/1611.02779" target="_blank" rel="noopener">Duan et al., 2016</a>; <a href="https://arxiv.org/abs/1611.05763" target="_blank" rel="noopener">Wang et al., 2016</a>), 我们保留了在episodes之间信息交换的机制。而且观察也会携带有关于结束episode的二进制信息。</p>
+<h2 id="3-1-Modular-Building-Blocks"><a href="#3-1-Modular-Building-Blocks" class="headerlink" title="3.1 Modular Building Blocks"></a>3.1 Modular Building Blocks</h2><p>我们使用几个低级预建模块来组成SNAIL的架构。接下来我们展示了每个模块作用在尺寸（序列长度$\times$输入维度）为X的矩阵（“输入”的伪代码写法）时的伪代码。另外，如果输入为图像，我们会使用一个额外的（空间）卷积网络，使得数据在进入SNAIL模型之前能被转换成特征向量的形式。图2展示了两种不同的模块。</p>
+<p>有很多方法被提出用于提高模型的性能以及加速深度卷积架构的训练，包括batch normalization (<a href="https://arxiv.org/abs/1502.03167" target="_blank" rel="noopener">Ioffe &amp; Szegedy (2015)</a>), residual connections (<a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">He et al. (2016)</a>), and dense connections (<a href="https://arxiv.org/abs/1608.06993" target="_blank" rel="noopener">Huang et al. (2016)</a>). 我们发现这些方法显著地提高了模型性能，提高了SNAIL的训练速度，但是residual/dense模型并没有从根本上对SNAIL的性能有所帮助（我们使用residual/dense模型提高了SNAILs的鲁棒性，详细配置见附录B）。</p>
 
         
     
