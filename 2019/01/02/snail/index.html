@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Wed Jan 02 2019 22:01:33 GMT+0900">
-        <meta property="article:modified_time" content="Sun Jan 06 2019 18:37:25 GMT+0900">
+        <meta property="article:modified_time" content="Sun Jan 06 2019 21:29:02 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2019/01/02/snail/index.html",
     "headline": "论文阅读-A SIMPLE NEURAL ATTENTIVE META-LEARNER (SNAIL)",
     "datePublished": "Wed Jan 02 2019 22:01:33 GMT+0900",
-    "dateModified": "Sun Jan 06 2019 18:37:25 GMT+0900",
+    "dateModified": "Sun Jan 06 2019 21:29:02 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -353,7 +353,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Abstract"><span class="post-toc-number">1.</span> <span class="post-toc-text">Abstract</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Meta-Learning-Preliminaries"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. Meta-Learning Preliminaries</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-A-Simple-Neural-Attentive-Learner"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. A Simple Neural Attentive Learner</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-Modular-Building-Blocks"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1 Modular Building Blocks</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-Related-Work"><span class="post-toc-number">5.</span> <span class="post-toc-text">4. Related Work</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-Experiments"><span class="post-toc-number">6.</span> <span class="post-toc-text">5. Experiments</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-Conclusion-and-Future-Work"><span class="post-toc-number">7.</span> <span class="post-toc-text">6. Conclusion and Future Work</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Abstract"><span class="post-toc-number">1.</span> <span class="post-toc-text">Abstract</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Introduction"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. Introduction</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Meta-Learning-Preliminaries"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. Meta-Learning Preliminaries</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-A-Simple-Neural-Attentive-Learner"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. A Simple Neural Attentive Learner</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-Modular-Building-Blocks"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1 Modular Building Blocks</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-Related-Work"><span class="post-toc-number">5.</span> <span class="post-toc-text">4. Related Work</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-Experiments"><span class="post-toc-number">6.</span> <span class="post-toc-text">5. Experiments</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-1-Few-Shot-Image-Classification"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">5.1 Few-Shot Image Classification</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-2-Reinforcement-Learning"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">5.2 Reinforcement Learning</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-Conclusion-and-Future-Work"><span class="post-toc-number">7.</span> <span class="post-toc-text">6. Conclusion and Future Work</span></a></li></ol>
     </ul>
     
 
@@ -522,7 +522,23 @@
 <p><a href="https://openreview.net/pdf?id=rJY0-Kcll" target="_blank" rel="noopener">Ravi &amp; Larochelle (2017)</a>改进了这个方法，它使用一个类LSTM元学习器，而一般的传统学习器是基于卷积网络的分类器。在他的设置中，元学习算法被分为两个部分：训练传统学习器的初始参数用于适应基于梯度的快速适应算法；训练LSTM元学习器去适应元学习任务的优化算法。<a href="https://arxiv.org/abs/1703.03400" target="_blank" rel="noopener">Finn et al. (2017)</a>找到了一个特殊形式：元学习器将被限制使用原始梯度下降去更新学习器并且证明了这种简化模型(也被称为MAML)也能够取得较好的性能。<a href="https://arxiv.org/abs/1703.00837" target="_blank" rel="noopener">Munkhdalai &amp; Yu (2017)</a>提出了一个更复杂的更新机制，在少样本分类任务中取得了较小的提升。</p>
 <p>前述所有的方法都受益于他们的任务非依赖性，但是他们显式的编码了一个特定的策略并让元学习器去学习（即在测试的时候通过梯度下降更新参数）。在特定的任务，可能会存在更好的策略能够利用任务的结构，但是基于梯度的方法无法发现这些策略。相反，SNAIL提供了一个替代的范式：一个通用的架构可以通过利用不同任务结构学习的算法。</p>
 <p><a href="https://arxiv.org/abs/1611.02779" target="_blank" rel="noopener">Duan et al. (2016)</a>和<a href="https://arxiv.org/abs/1611.05763" target="_blank" rel="noopener">Wang et al. (2016)</a>提出了基于传统RNN架构(GRUs和LSTMs)的可用于强化学习的元学习算法。另外，<a href="https://arxiv.org/abs/1703.03400" target="_blank" rel="noopener">Finn et al. (2017)</a>在连续控制任务上实验了策略快速自适应，这里元学习器采用一系列高相关的动态任务进行训练。我们在Section 5.2中对比了SNAIL与MAML以及一个基于LSTM元学习器在任务中的性能。</p>
-<h1 id="5-Experiments"><a href="#5-Experiments" class="headerlink" title="5. Experiments"></a>5. Experiments</h1><p>待续。</p>
+<h1 id="5-Experiments"><a href="#5-Experiments" class="headerlink" title="5. Experiments"></a>5. Experiments</h1><p>本文实验设计是为了探究一下问题：</p>
+<ul>
+<li>SNAIL是如何能够通用于各种元学习任务的？</li>
+<li>在一种任务或在嵌入的高层级策略中如何与其他的方法进行比较？</li>
+<li>SNAIL如何处理高维输入和长时间依赖的？</li>
+</ul>
+<h2 id="5-1-Few-Shot-Image-Classification"><a href="#5-1-Few-Shot-Image-Classification" class="headerlink" title="5.1 Few-Shot Image Classification"></a>5.1 Few-Shot Image Classification</h2><p>在少样本分类任务中，我们希望将样本分类为$N$类，但是此时我们每类数据只拥有少量($K$个)已标记的样本。一个元学习器可以很容易完成上述任务，因为它可以学习如何去比较输入样本而不是去记忆特定的样本到类别的映射。</p>
+<p>Omniglot和mini-ImageNet数据集是针对少样本图像识别的标准benchmark（监督学习）。Omniglot由<a href="https://cims.nyu.edu/~brenden/LakeEtAl2011CogSci.pdf" target="_blank" rel="noopener">Lake et al. (2011)</a>提出，它包括50种语言的的黑白手写图像，总共有1632种不同的类别，每个类别含有20张图像。如同之前的方法，我们将图像降采样到$28\times28$并且随机选择1200类作为训练集，432类作为测试集。我们使用与<a href="https://arxiv.org/abs/1605.06065" target="_blank" rel="noopener">Santoro et al. (2016)</a>相同的数据增广方法：将原始图像每旋转90度就存储为新的图像作为新的一类数据。</p>
+<p>Mini-ImageNet是一个更加严格的benchmark;它是著名的ImageNet数据集的子集。它包含100个不同类别每类600张$84\times84$彩色图像。我们使用了<a href="https://openreview.net/pdf?id=rJY0-Kcll" target="_blank" rel="noopener">Ravi &amp; Larochelle (2017)</a>的分割方法，具体就是使用64个类别的数据进行训练，16个类别的数据进行交叉验证，20个类别进行测试。</p>
+<p>为了测试SNAIL在$N$-way, $K$-shot任务上的表现，我们从这个数据集中采样$N$类数据，每类数据包含$K$个样本。然后我们将对应的$NK$样本-标签对以随机顺序输入SNAIL中，随后输入$N$类数据中某一类的一个新的，没有标签的样本。最终我们将通过公式$(NK+1)-th\ timestep$获得平均准确率。</p>
+<p>我们在5-way Omniglot，20-way Omniglot和5-way mini-ImageNet任务上测试了SNAIL.在每个任务上，我们以episodes为单位训练SNAIL，每个episode中$K$值在1～5范围中随机选取（这里与之前的工作不太一样，它们用每个样本训练一个模型）。在$KN$    任务中，损失取自预测与实际标签在$(NK+1)-th\ timestep$的交叉熵。我们遵循端到端的潮流使用Adam优化器(<a href="https://arxiv.org/abs/1412.6980" target="_blank" rel="noopener">Kingma &amp; Ba, 2015</a>)训练SNAIL和一个特征提取网络。对于我们使用的SNAIL和嵌入式架构的完整描述见附录A.</p>
+<p>表1展示了我们在5-way和20-way Omniglot任务的成绩，表2展示了5-way mini-ImageNet的成绩。我们看到SNAIL大大优于其他的先进方法，无论是手工设计的还是还是任务相关的。它的性能显著超越了其他的同样简单和通用的方法，例如<a href="https://arxiv.org/abs/1605.06065" target="_blank" rel="noopener">Santoro et al. (2016)</a>.在附录B,我们详细分析了SNAIL的性能。</p>
+<p>表1：5-way和20-way, 1-shot 和5-shot Omniglot任务的分类精度，设置了95%的置信区间。对于每个任务，拥有最高性能的方法被加粗了，按照超过置信区间的顺序排列。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fyx4yfpvzgj31tg0h2jwi.jpg" alt="image-20190106212703064"></p>
+<p>表2：5-way, 1-shot 和5-shot mini-ImageNet任务的分类精度，设置了95%的置信区间。对于每个任务，拥有最高性能的方法被加粗了，按照超过置信区间的顺序排列。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fyx4ztgm50j31500f0n11.jpg" alt="image-20190106212822321"></p>
+<h2 id="5-2-Reinforcement-Learning"><a href="#5-2-Reinforcement-Learning" class="headerlink" title="5.2 Reinforcement Learning"></a>5.2 Reinforcement Learning</h2><p>待续。</p>
 <h1 id="6-Conclusion-and-Future-Work"><a href="#6-Conclusion-and-Future-Work" class="headerlink" title="6. Conclusion and Future Work"></a>6. Conclusion and Future Work</h1><p>我们提出一个简单通用的元学习架构，目的是满足元学习器对于快速整合和访问过去经验的需要。我们的SNAIL将时域卷积和因果注意机制结合，两个结合的序列到序列（sequence-to-sequence）的模块具有可以互补的长处和短处。我们通过在广泛使用的数据集上完成元学习任务（监督学习和强化学习）展示了SNAIL先进的性能，并且SNAIL没有依赖任何应用相关架构和算法先验知识。</p>
 <p>尽管我们以元学习的思想设计SNAIL，它依然擅长其他序列到序列的任务，例如语言建模和翻译；我们计划未来研究这个方向。</p>
 <p>另外一个有趣的想法是训练一个可以利用整个生命周期经验的元学习器（在这个工作中，仅仅是几个最近的episodes）。一个智能体如果可以利用终身的记忆，那么它就可以学习得更快，泛化能力更强；但是为了保证在计算层面的可行性，我们仍然需要考虑哪些经验是值得去学习的。</p>
