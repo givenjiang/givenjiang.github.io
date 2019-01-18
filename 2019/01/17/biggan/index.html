@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Thu Jan 17 2019 10:59:38 GMT+0900">
-        <meta property="article:modified_time" content="Fri Jan 18 2019 17:37:59 GMT+0900">
+        <meta property="article:modified_time" content="Fri Jan 18 2019 20:14:04 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2019/01/17/biggan/index.html",
     "headline": "网红论文阅读-Large Scale GAN Training for High Fidelity Natural Image Synthesis (BigGAN)",
     "datePublished": "Thu Jan 17 2019 10:59:38 GMT+0900",
-    "dateModified": "Fri Jan 18 2019 17:37:59 GMT+0900",
+    "dateModified": "Fri Jan 18 2019 20:14:04 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -500,11 +500,13 @@
 <li>我们研究并根据经验解析了大规模GANs不稳定的特性。通过对于这些研究的分析，我们发现通过混合使用最新和现存的技术可以降低这种不稳定性，但是完全的稳定训练只有通过巨大的性能妥协才能达到。</li>
 </ul>
 <p>我们的模型性能相比类条件GANs有了显著提升。当我们使用$128\times128$分辨率的ImageNet数据集进行训练的时候，我们的模型(BigGANs)将目前最高的IS得分从52.52提高到166.3，同时将目前最高的FID得分从18.65提高到9.6.在$256\times256$分辨率的得分上，分别取得233.0的IS得分和9.3的FID得分。对于更大的分辨率$512\times512$，我们取得了241.4的IS得分和10.9的FID得分。最后，我们使用一个规模更大的数据集JFT-300M训练我们的模型，结果显示我们的算法可以很好地从ImageNet数据集迁移到新的数据集上。</p>
-<h1 id="2-Background"><a href="#2-Background" class="headerlink" title="2. Background"></a>2. Background</h1><p>一个典型的生成对抗网络模型(GAN)包括生成网络(G)和判别网络(D)，生成网络目标是将随机噪声映射到样本上，而判别网络的目标是鉴别真实和生成的样本。正式的说，GAN的原始目标( <a href="https://arxiv.org/abs/1406.2661" target="_blank" rel="noopener">Goodfellow et al. (2014)</a>)是在下面这个双向最小化-最大化问题中寻求一个纳什平衡：<br>$$<br>\min_{G} \max_{D} \mathbb{E}_ {x \sim q_{data}(x)}[logD(x)]+\mathbb{E}_{z \sim p(z)}[log(1-D(G(z)))], \tag{1}<br>$$<br>其中$z\in \mathbb{R}^{d_z}​$是分布$p(z)​$的一个隐变量，这个分布可以是$N(0,I)​$或者$U[-1,1]​$.当应用于图像领域，G和D往往以卷积神经网络的形式出现(<a href="https://arxiv.org/abs/1511.06434" target="_blank" rel="noopener">Radford et al., 2016</a>).因为没有辅助的稳定技术，它的训练过程是公认十分不稳定的，所以需要精心设计的超参数和架构来克服这个问题。</p>
+<h1 id="2-Background"><a href="#2-Background" class="headerlink" title="2. Background"></a>2. Background</h1><p>一个典型的生成对抗网络模型(GAN)包括生成网络(G)和判别网络(D)，生成网络目标是将随机噪声映射到样本上，而判别网络的目标是鉴别真实和生成的样本。正式的说，GAN的原始目标( <a href="https://arxiv.org/abs/1406.2661" target="_blank" rel="noopener">Goodfellow et al. (2014)</a>)是在下面这个双向最小化-最大化问题中寻求一个纳什平衡：<br>$$<br>\min_{G} \max_{D} \mathbb{E}_ {x \sim q_{data}(x)}[logD(x)]+\mathbb{E}_ {z \sim p(z)}[log(1-D(G(z)))], \tag{1}<br>$$<br>其中$z\in \mathbb{R}^{d_z}​$是分布$p(z)​$的一个隐变量，这个分布可以是$N(0,I)​$或者$U[-1,1]​$.当应用于图像领域，G和D往往以卷积神经网络的形式出现(<a href="https://arxiv.org/abs/1511.06434" target="_blank" rel="noopener">Radford et al., 2016</a>).因为没有辅助的稳定技术，它的训练过程是公认十分不稳定的，所以需要精心设计的超参数和架构来克服这个问题。</p>
 <p>许多最近的工作集中精力在提升原始GAN架构的稳定性上，这些方法中既有经验型的研究也有理论性的探究 (<a href="https://arxiv.org/abs/1606.00709" target="_blank" rel="noopener">Nowozin et al., 2016</a>; <a href="">Sønderby et al., 2017</a>; <a href="https://arxiv.org/abs/1710.08446" target="_blank" rel="noopener">Fedus et al., 2018</a>).另外一类工作专注于修改目标函数(<a href="https://arxiv.org/abs/1701.07875" target="_blank" rel="noopener">Arjovsky et al., 2017</a>; <a href="https://arxiv.org/abs/1611.04076" target="_blank" rel="noopener">Mao et al., 2016</a>; <a href="https://arxiv.org/abs/1705.02894" target="_blank" rel="noopener">Lim &amp; Ye, 2017</a>; <a href="https://arxiv.org/abs/1705.10743" target="_blank" rel="noopener">Bellemare et al., 2017</a>; <a href="https://arxiv.org/abs/1801.04406" target="_blank" rel="noopener">Salimans et al., 2018</a>)以帮助模型收敛。还有一类工作是通过梯度惩罚(<a href="http://papers.nips.cc/paper/7159-improved-training-of-wasserstein-gans" target="_blank" rel="noopener">Gulrajani et al., 2017</a>; <a href="https://arxiv.org/abs/1705.07215" target="_blank" rel="noopener">Kodali et al., 2017</a>; <a href="https://arxiv.org/abs/1801.04406" target="_blank" rel="noopener">Mescheder et al., 2018</a>)或者标准化(<a href="https://arxiv.org/abs/1802.05957" target="_blank" rel="noopener">Miyato et al., 2018</a>)来限制D,这两种方法限制了无边界损失函数的使用并且保证了D能够在任何地方都能将梯度传递给G.</p>
 <p>我们的工作与谱归一化 (Miyato et al., 2018)有特殊的关联，它通过对D的参数最大奇异值进行估计来归一化其参数，从而实现强制D服从Lipschitz连续性，同时利用逆向动力学实现对主奇异值的自适应归一化。<a href="https://arxiv.org/abs/1802.08768" target="_blank" rel="noopener">Odena et al. (2018)</a>研究了G的雅可比矩阵的条件数，发现G的性能与条件数相关。<a href="https://arxiv.org/abs/1805.08318" target="_blank" rel="noopener">Zhang et al. (2018)</a>发现谱归一化可以提高G的稳定性，并减少在每次迭代时D的步数。我们对上述研究进行了深入的分析以了解GAN的训练机制。</p>
 <p>另一方面，有一些工作专注于架构的选择，例如SA-GAN (<a href="https://arxiv.org/abs/1805.08318" target="_blank" rel="noopener">Zhang et al., 2018</a>)增加了自注意力模块(<a href="https://arxiv.org/abs/1711.07971" target="_blank" rel="noopener">Wang et al., 2018</a>)以提高G和D在进行全局建模时的性能。ProGAN (<a href="https://arxiv.org/abs/1710.10196" target="_blank" rel="noopener">Karras et al., 2018</a>)使用单类设定训练了高分辨率的GANs,具体来说就是使用逐步提升分辨率的样本序列来训练单个模型。</p>
 <p>条件GANs (<a href="https://arxiv.org/abs/1411.1784" target="_blank" rel="noopener">Mirza &amp; Osindero, 2014</a>)可以从多种渠道利用输入的类别信息。<a href="https://arxiv.org/abs/1610.09585" target="_blank" rel="noopener">Odena et al., 2017</a> 将1-hot类向量与噪声向量连接，并且将目标修改为生成条件样本，从而最大化辅助分类器对于相应类别的预测概率。<a href="https://arxiv.org/abs/1707.00683" target="_blank" rel="noopener">de Vries et al. (2017)</a>和<a href="https://arxiv.org/abs/1610.07629" target="_blank" rel="noopener">Dumoulin et al. (2017)</a>通过提供类条件增益和批标准化(<a href="https://arxiv.org/abs/1502.03167" target="_blank" rel="noopener">Ioffe &amp; Szegedy, 2015</a>)层中的偏差以修正类条件传递给G的方式。在Miyato &amp; Koyama (2018) 的研究中，通过使用D特征之间的余弦相似度和一系列学习到的类嵌入信息实现了真实和生成样本的鉴别，有效地提升了那些特征与学习到的类相符的样本生成效率。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fzaxjughzkj31ik0pon6a.jpg" alt="image-20190118194838585"></p>
+<p>表1: Fr´echet Inception Distance (FID, 越小越好)和Inception Score (IS, 越高越好)用于评价我们提出的模型。<em>Batch</em>是批大小，<em>Param</em>是参数的总数量，<em>ch.</em>是通道乘法器，代表每层的单元数。<em>Shared</em>是否使用share embeddings. <em>Hier.</em>是否使用分层隐空间。<em>Ortho</em>是否使用正交正则化，<em>Itr</em>指收敛时的迭代次数或者在指定迭代次数为止依然无法收敛。1-4行中展示了8种不同的随机初始化参数的实验结果。</p>
 
         
     
