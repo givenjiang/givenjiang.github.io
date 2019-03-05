@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Tue Mar 05 2019 18:33:04 GMT+0900">
-        <meta property="article:modified_time" content="Tue Mar 05 2019 19:14:11 GMT+0900">
+        <meta property="article:modified_time" content="Tue Mar 05 2019 20:05:08 GMT+0900">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://story.givenjiang.com/2019/03/05/deepfake0/index.html",
     "headline": "玩转DeepFake (1): faceswap使用手册",
     "datePublished": "Tue Mar 05 2019 18:33:04 GMT+0900",
-    "dateModified": "Tue Mar 05 2019 19:14:11 GMT+0900",
+    "dateModified": "Tue Mar 05 2019 20:05:08 GMT+0900",
     "author": {
         "@type": "Person",
         "name": "Given",
@@ -353,7 +353,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#工作流程"><span class="post-toc-number">1.</span> <span class="post-toc-text">工作流程</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#工作流程"><span class="post-toc-number">1.</span> <span class="post-toc-text">工作流程</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#获取原始数据"><span class="post-toc-number">2.</span> <span class="post-toc-text">获取原始数据</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#提取面部数据"><span class="post-toc-number">3.</span> <span class="post-toc-text">提取面部数据</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#模型训练"><span class="post-toc-number">4.</span> <span class="post-toc-text">模型训练</span></a></li></ol>
     </ul>
     
 
@@ -489,7 +489,23 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p>本手册翻译自<a href="https://github.com/deepfakes/faceswap/blob/master/USAGE.md" target="_blank" rel="noopener">faceswap Github</a>主页。</p>
-<h1 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h1>
+<h1 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h1><p>那么，你希望为你的图片或者视频换脸是吗？好的，请稍等一下，因为首先你需要理解faceswap都在干什么，它是如何工作的以及它的缺陷。</p>
+<p>faceswap的基本操作流程是简单的。它通过训练一个机器学习模型来识别和交换两个面部图像。这个机器学习模型可以看作是我们的小小“机器人”，我们可以使用图像作为训练数据调教它，从而使其真正具有“交换”的能力。需要注意的是，我们的模型主要用于处理人脸，对于其他的目标可能效果不好。</p>
+<p>接下来是我们的计划，我们希望川普在总统竞选的时候输给尼古拉斯凯奇；我们有川普的就职演说视频；让我们开始把川普换脸成尼古拉斯凯奇吧。</p>
+<h1 id="获取原始数据"><a href="#获取原始数据" class="headerlink" title="获取原始数据"></a>获取原始数据</h1><p>为了完成上述任务，模型需要学会去识别face A（川普）和face B（凯奇）。在一开始，模型并不知道川普或者凯奇的样子。所以我们需要向它展示一些图片并让它预测图片的类别。接下来我们首先来收集所需的面部。</p>
+<p>通过Google, DuckDuckGo或者Bing图片搜索，我们可以获得大量的图片。或者，我们也可以将一些视频转换为图片。参考分解视频帧章节以了解更多。</p>
+<p>也欢迎你在<a href="https://github.com/deepfakes/faceswap-playground" target="_blank" rel="noopener">faceswap-playground</a>上分享你的图片集或者为官方贡献你的想法。</p>
+<p>现在，我们拥有了一系列川普和凯奇的图片。让我们将保存它们保存到faceswap工程的目录下。例如：<code>~/faceswap/photo/trump</code> 或者 <code>~/faceswap/photo/cage</code></p>
+<h1 id="提取面部数据"><a href="#提取面部数据" class="headerlink" title="提取面部数据"></a>提取面部数据</h1><p>现在我们面临一个问题，尽管我们拥有成吨的图像数据，但是这些图像里既包含川普和凯奇，也包含了背景以及其他不相关的人。然而我们只能通过面部数据来训练模型，下面的命令可以实现对于面部数据的提取：</p>
+<pre><code># To convert trump:
+python faceswap.py extract -i ~/faceswap/photo/trump -o ~/faceswap/data/trump
+# To convert cage:
+python faceswap.py extract -i ~/faceswap/photo/cage -o ~/faceswap/data/cage
+</code></pre><p>在上面的命令参数中，我们需要指定输入图像的路径和输出数据的路径，这些输出数据将会被当作训练数据存储。命令执行的时候，程序会识别面部的特征并且将其截取出来保存到输出路径。需要注意的是：这个面部提取模块并不完美，它可能会错误地提取到非目标的面部。所以：<strong>在开始训练一定要检查好训练集的数据</strong>。训练数据将会在很大程度上影响模型的表现。</p>
+<p>你可以通过-h 标志查看extract命令所支持所有参数：</p>
+<pre><code>python faceswap.py extract -h
+</code></pre><p>有一些插件支持自定义选项。你可以在以下文件中找到它们：<code>&lt;faceswap_folder&gt;\plugins\extract\config.ini&lt;faceswap_folder&gt;\plugins\extract\config.ini</code>.需要至少运行一次提取操作以生成这个配置文件。</p>
+<h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1>
         
     
 
